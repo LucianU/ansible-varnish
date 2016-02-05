@@ -1,0 +1,4 @@
+---
+varnish_config: default.vcl.j2
+varnish_repo: deb https://repo.varnish-cache.org/ubuntu/ trusty varnish-4.1
+varnish_repo_key_url: https://repo.varnish-cache.org/GPG-key.txt

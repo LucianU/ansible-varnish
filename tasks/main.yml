@@ -1,0 +1,31 @@
+---
+- name: add repo key
+  apt_key:
+    url: "{{ varnish_repo_key_url }}"
+    state: present
+  become: yes
+  become_user: root
+
+- name: add deb repo
+  apt_repository:
+    repo: "{{ varnish_repo }}"
+    update_cache: yes
+    state: present
+  become: yes
+  become_user: root
+
+- name: install varnish
+  apt:
+    name: varnish
+    state: present
+  become: yes
+  become_user: root
+
+- name: install config file
+  template:
+    src: "{{ varnish_config }}"
+    dest: /etc/varnish/default.vcl
+  notify:
+    - restart varnish
+  become: yes
+  become_user: root

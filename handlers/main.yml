@@ -1,0 +1,7 @@
+---
+- name: restart varnish
+  service:
+    name: varnish
+    state: restarted
+  become: yes
+  become_user: root
